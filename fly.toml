@@ -1,0 +1,55 @@
+# Fly.io Configuration
+app = "pharmacy-finder-chile"
+primary_region = "mia"  # Miami - good for Latin America
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  APP_NAME = "Farmacias Chile"
+  ENV = "production"
+  PORT = "8080"
+  
+  # Database
+  DATABASE_URL = "/app/data/pharmacy_finder.db"
+  
+  # API Configuration
+  MINSAL_API_BASE = "https://midas.minsal.cl/farmacia_v2/WS"
+  HTTP_TIMEOUT = "10.0"
+  
+  # Cache
+  CACHE_TTL = "300"
+  CACHE_HEALTH_CHECK_INTERVAL = "60"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  max_machines_running = 1
+
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "5s"  
+    method = "GET"
+    path = "/health"
+
+# Machine size - Small shared CPU for cost efficiency
+[vm]
+  size = "shared-cpu-1x"  # 1 CPU, 256MB RAM
+  
+# Auto-scaling configuration
+[http_service.concurrency]
+  type = "requests"
+  hard_limit = 25
+  soft_limit = 15
+
+# Restart policy
+[restart_policy]
+  policy = "on-failure"
+
+# Volume for persistent data
+[mounts]
+  source = "pharmacy_data"
+  destination = "/app/data"

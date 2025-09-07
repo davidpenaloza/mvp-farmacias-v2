@@ -1,0 +1,38 @@
+﻿# ==== Secretos & Entornos ====
+.env
+*.env
+.env.*
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# Credenciales comunes
+secrets/
+*.key
+*.pem
+*.pfx
+*.p12
+*.jks
+id_rsa*
+id_ed25519*
+serviceAccount*.json
+*credentials*.json
+*apikey*.txt
+*token*.txt
+
+# Node / Python / VSCode (opcional)
+node_modules/
+npm-debug.log*
+__pycache__/
+*.pyc
+.venv/
+.envrc
+.vscode/
+dist/
+build/
+
+# ensure env files
+.env
+*.env
+.env.*
