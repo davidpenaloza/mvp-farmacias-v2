@@ -128,7 +128,10 @@
   --gradient-hero: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
   --gradient-card: linear-gradient(145deg, #1e2139 0%, #16213e 100%);
   --gradient-accent: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+<<<<<<< HEAD
   --gradient-primary: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 }
 
 /* ☀️ Light Theme (Clean medical/professional) */
@@ -202,7 +205,10 @@
   --gradient-hero: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #007bff 100%);
   --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
   --gradient-accent: linear-gradient(135deg, #007bff 0%, #66b3ff 100%);
+<<<<<<< HEAD
   --gradient-primary: linear-gradient(135deg, #007bff 0%, #66b3ff 100%);
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 }
 
 /* Universal smooth transitions for theme switching */

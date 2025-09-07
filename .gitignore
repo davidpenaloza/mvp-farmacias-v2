@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿# ==== Secretos & Entornos ====
 .env
 *.env
@@ -36,3 +37,11 @@ build/
 .env
 *.env
 .env.*
+=======
+﻿.venv/
+__pycache__/
+*.pyc
+pharmacy_finder.db
+.env
+*.log
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9

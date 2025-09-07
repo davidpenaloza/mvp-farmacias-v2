@@ -6,7 +6,10 @@ from typing import Optional, List
 from datetime import datetime, time
 import sqlite3
 import json
+<<<<<<< HEAD
 import os
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 
 @dataclass
 class Pharmacy:
@@ -72,8 +75,12 @@ class PharmacyDatabase:
     """SQLite database manager for pharmacies"""
 
     def __init__(self, db_path: str = "pharmacy_finder.db"):
+<<<<<<< HEAD
         # Allow overriding via environment (e.g., when using a mounted volume on Fly)
         self.db_path = os.getenv("DATABASE_URL", db_path)
+=======
+        self.db_path = db_path
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         self.init_database()
 
     def init_database(self):
@@ -292,11 +299,14 @@ class PharmacyDatabase:
             now = datetime.now()
             current_time = now.time()
             
+<<<<<<< HEAD
             # PRIORITY 1: If it's a turno pharmacy, it should be available 24/7
             if pharmacy.es_turno:
                 return True
             
             # PRIORITY 2: Check regular schedule for non-turno pharmacies
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             # Map English day names to Spanish for consistency with database
             day_mapping = {
                 'monday': 'lunes',
@@ -379,6 +389,7 @@ class PharmacyDatabase:
         """Find pharmacies in a commune that are currently open"""
         pharmacies = self.find_by_comuna(comuna, False)
         return [p for p in pharmacies if self.is_pharmacy_currently_open(p)]
+<<<<<<< HEAD
 
 
 # ---------------------------------------------------------------------------
@@ -414,3 +425,5 @@ def get_pharmacy_count():
 def get_all_communes():
     return _default_db.get_all_communes()
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9

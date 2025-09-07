@@ -19,9 +19,12 @@ langfuse>=2.0.0
 # Location processing
 geopy>=2.3.0
 
+<<<<<<< HEAD
 # Google Maps API integration
 googlemaps>=4.7.0
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 # Text processing and normalization
 unidecode>=1.3.0
 

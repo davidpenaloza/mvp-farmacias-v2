@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Multi-stage build for optimized Python deployment
 FROM python:3.11-slim as builder
 
@@ -59,3 +60,19 @@ EXPOSE 8080
 
 # Optimized startup command  
 CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080", "--workers", "1"]
+=======
+# Dockerfile (API)
+FROM python:3.11-slim
+
+WORKDIR /app
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app ./app
+COPY docs ./docs
+COPY .env.example ./
+ENV PYTHONUNBUFFERED=1
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9

@@ -7,7 +7,10 @@ import sys
 from dotenv import load_dotenv
 from typing import List, Dict
 import time
+<<<<<<< HEAD
 import json
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 
 # Add parent directory to path to import app modules
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
@@ -26,6 +29,7 @@ class MINSALDataImporter:
         self.api_base = MINSAL_API_BASE
 
     def fetch_api_data(self, endpoint: str) -> List[Dict]:
+<<<<<<< HEAD
         """Fetch data from MINSAL API with retry logic"""
         url = f"{self.api_base}/{endpoint}"
         print(f"📡 Fetching from: {url}")
@@ -88,17 +92,45 @@ class MINSALDataImporter:
 
     def import_all_pharmacies(self):
         """Import all pharmacy data with fallback to backup"""
+=======
+        """Fetch data from MINSAL API"""
+        url = f"{self.api_base}/{endpoint}"
+        print(f"📡 Fetching from: {url}")
+
+        try:
+            resp = requests.get(url, timeout=30)
+            resp.raise_for_status()
+            data = resp.json()
+
+            if isinstance(data, list):
+                return data
+            elif isinstance(data, dict) and 'data' in data:
+                return data['data']
+            else:
+                print(f"⚠️  Unexpected data format: {type(data)}")
+                return []
+
+        except Exception as e:
+            print(f"❌ Error fetching {endpoint}: {e}")
+            return []
+
+    def import_all_pharmacies(self):
+        """Import all pharmacy data"""
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         print("🏥 Starting pharmacy data import...")
         print("=" * 50)
 
         # Import regular pharmacies
         print("\n📋 Importing regular pharmacies...")
         regular_data = self.fetch_api_data("getLocales.php")
+<<<<<<< HEAD
         
         if not regular_data:
             print("⚠️  API failed, trying backup data...")
             regular_data = self.load_backup_data('regular')
         
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         if regular_data:
             pharmacies = [Pharmacy.from_api_data(item, es_turno=False)
                          for item in regular_data]
@@ -108,11 +140,14 @@ class MINSALDataImporter:
         # Import pharmacies on duty
         print("\n⏰ Importing pharmacies on duty...")
         turno_data = self.fetch_api_data("getLocalesTurnos.php")
+<<<<<<< HEAD
         
         if not turno_data:
             print("⚠️  API failed, trying backup data...")
             turno_data = self.load_backup_data('turno')
         
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         if turno_data:
             turno_pharmacies = [Pharmacy.from_api_data(item, es_turno=True)
                               for item in turno_data]
@@ -131,6 +166,7 @@ class MINSALDataImporter:
         print(f"\n🏙️  Available communes: {len(communes)}")
         print("Sample communes:", communes[:10])
 
+<<<<<<< HEAD
     def load_backup_data(self, data_type: str) -> List[Dict]:
         """Load backup data when API fails"""
         backup_file = os.path.join(os.path.dirname(__file__), 'pharmacy_backup.json')
@@ -183,6 +219,8 @@ class MINSALDataImporter:
         
         return []
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     def test_villa_alemana(self):
         """Test search for Villa Alemana"""
         print("\n🏥 Testing Villa Alemana search...")

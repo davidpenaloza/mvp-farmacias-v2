@@ -8,7 +8,11 @@
     <meta name="theme-color" content="#1a1a2e">
     
     <!-- Favicon -->
+<<<<<<< HEAD
     <link rel="icon" type="image/png" href="/templates/assets/images/logo1.png">
+=======
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%234CAF50' rx='6'/><rect x='13' y='8' width='6' height='16' fill='white'/><rect x='8' y='13' width='16' height='6' fill='white'/></svg>">
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     
     <!-- Preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +30,7 @@
     <link rel="stylesheet" href="/templates/assets/css/main.css">
     <link rel="stylesheet" href="/templates/assets/css/components.css">
     
+<<<<<<< HEAD
     <!-- Custom styles for map markers -->
     <style>
         .pharmacy-marker {
@@ -253,6 +258,9 @@
     
     <!-- PWA Meta Tags -->
     <meta name="mobile-web-app-capable" content="yes">
+=======
+    <!-- PWA Meta Tags -->
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Farmacias Chile">
@@ -280,6 +288,7 @@
     }
     </script>
 </head>
+<<<<<<< HEAD
 
 <body>
     <!-- App Header with Theme Toggle (back inside body for JS access) -->
@@ -288,15 +297,33 @@
             <a href="/" class="logo">
                 <img src="/templates/assets/images/logo1.png" alt="Logo" style="height: 32px; width: auto; margin-right: 8px; vertical-align: middle;">
                 Farmacias Chile
+=======
+<body>
+    <!-- App Header with Theme Toggle -->
+    <header class="app-header">
+        <div class="header-left">
+            <a href="/" class="logo">
+                🏥 Farmacias Chile
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             </a>
         </div>
         <div class="header-right">
             <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+<<<<<<< HEAD
                 <span class="theme-icon"></span>
+=======
+                <div class="theme-toggle-track">
+                    <div class="theme-toggle-thumb">
+                        <span class="theme-icon theme-icon-sun">☀️</span>
+                        <span class="theme-icon theme-icon-moon">🌙</span>
+                    </div>
+                </div>
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             </button>
         </div>
     </header>
 
+<<<<<<< HEAD
     <!-- Header Stats Bar -->
     <section class="header-stats-section">
         <div class="stats-grid">
@@ -319,6 +346,8 @@
         </div>
     </section>
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     <!-- Hero Section = Main Chat Interface -->
     <section class="hero-section">
         <div class="hero-main-interface">
@@ -326,9 +355,13 @@
                 <!-- Left Side: Chat Interface -->
                 <div class="chat-main-panel">
                     <div class="chat-header-main">
+<<<<<<< HEAD
                         <div class="ai-avatar-large">
                             <img src="/templates/assets/images/logo1.png" alt="AI Assistant" style="width: 60px; height: 60px; border-radius: 50%; object-fit: contain;">
                         </div>
+=======
+                        <div class="ai-avatar-large">🤖</div>
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                         <div class="ai-info-main">
                             <h2>Asistente Farmacéutico</h2>
                             <p>Encuentra farmacias cerca de ti</p>
@@ -393,6 +426,31 @@
 
     <!-- Main Content -->
     <main class="main-content">
+<<<<<<< HEAD
+=======
+        <!-- Statistics Section -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card fade-in stagger-1">
+                    <div class="stat-number" id="total-pharmacies">0</div>
+                    <div class="stat-label">Total Farmacias</div>
+                </div>
+                <div class="stat-card fade-in stagger-2">
+                    <div class="stat-number" id="open-pharmacies">0</div>
+                    <div class="stat-label">De Turno</div>
+                </div>
+                <div class="stat-card fade-in stagger-3">
+                    <div class="stat-number" id="communes-count">0</div>
+                    <div class="stat-label">Comunas</div>
+                </div>
+                <div class="stat-card fade-in stagger-4">
+                    <div class="stat-time" id="current-time">--:--:--</div>
+                    <div class="stat-label">Hora Actual</div>
+                </div>
+            </div>
+        </section>
+
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         <!-- Search Controls -->
         <section class="search-controls">
             <div class="search-controls-grid">
@@ -491,6 +549,7 @@
         import { ThemeManager } from '/templates/assets/js/theme.js';
         import { PharmacyFinder } from '/templates/assets/js/main.js';
         
+<<<<<<< HEAD
         // Debug function for theme toggle
         function debugThemeToggle() {
             const toggle = document.getElementById('themeToggle');
@@ -512,6 +571,8 @@
             }
         }
         
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         // Initialize the application
         class App {
             constructor() {
@@ -519,21 +580,28 @@
                 this.pharmacyFinder = new PharmacyFinder();
                 this.sessionId = null; // Initialize chat session ID
                 this.mapPreview = null; // Map preview instance
+<<<<<<< HEAD
                 this.mainMap = null; // Main map instance
                 this.currentLocationMarker = null; // Current location marker
                 this.pharmacyMarkers = []; // Array to store pharmacy markers
                 this.pharmacyMarkersGroup = null; // Layer group for pharmacy markers
                 this.previewPharmacyMarkersGroup = null; // Layer group for pharmacy markers on preview map
                 this.logoAnimationInterval = null; // For typing indicator logo animation
+=======
+                this.currentLocationMarker = null; // Current location marker
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                 this.initIntegratedChat();
                 
                 // Make globally available for legacy code
                 window.app = this.pharmacyFinder;
                 window.themeManager = this.theme;
                 
+<<<<<<< HEAD
                 // Debug theme toggle after a short delay
                 setTimeout(debugThemeToggle, 1000);
                 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                 console.log('🚀 Integrated Pharmacy Finder App initialized');
             }
             
@@ -553,9 +621,12 @@
                 // Initialize map preview
                 this.initMapPreview();
                 
+<<<<<<< HEAD
                 // Initialize main map
                 this.initMainMap();
                 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                 if (chatInput && chatSend) {
                     chatSend.addEventListener('click', () => {
                         console.log('💬 Send button clicked');
@@ -609,9 +680,12 @@
                             attribution: ''
                         }).addTo(this.mapPreview);
                         
+<<<<<<< HEAD
                         // Initialize pharmacy markers group for preview map
                         this.previewPharmacyMarkersGroup = L.layerGroup().addTo(this.mapPreview);
                         
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                         console.log('🗺️ Map preview initialized');
                     } else {
                         console.warn('Leaflet not loaded, map preview not initialized');
@@ -621,6 +695,7 @@
                 }
             }
             
+<<<<<<< HEAD
             initMainMap() {
                 // Initialize main interactive map
                 try {
@@ -909,6 +984,8 @@
                 }
             }
             
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             async sendMessage() {
                 console.log('📤 sendMessage called');
                 const input = document.getElementById('mainChatInput');
@@ -923,6 +1000,7 @@
                 this.addMessage('user', message);
                 input.value = '';
                 
+<<<<<<< HEAD
                 await this.sendToAgent(message);
             }
             
@@ -939,6 +1017,11 @@
                 const minDisplayTime = 2500; // 2.5 seconds - enough to see the animation
                 const startTime = Date.now();
                 
+=======
+                // Add typing indicator
+                this.showTypingIndicator();
+                
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                 const payload = { 
                     message: message,
                     session_id: this.sessionId || null 
@@ -961,6 +1044,7 @@
                     const data = await response.json();
                     console.log('📥 Response data:', data);
                     
+<<<<<<< HEAD
                     // Calculate how long to wait before hiding the typing indicator
                     const elapsedTime = Date.now() - startTime;
                     const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
@@ -988,6 +1072,25 @@
                             this.addMessage('ai', `🔧 Herramientas utilizadas: ${data.tools_used.join(', ')}`);
                         }
                     }, remainingTime);
+=======
+                    this.hideTypingIndicator();
+                    
+                    // Store session ID for future messages
+                    if (data.session_id) {
+                        this.sessionId = data.session_id;
+                        console.log('🔐 Session ID stored:', this.sessionId);
+                    }
+                    
+                    // Display AI response
+                    const aiMessage = data.reply || data.response || 'Respuesta recibida';
+                    this.addMessage('ai', aiMessage);
+                    
+                    // Show tools used if any
+                    if (data.tools_used && data.tools_used.length > 0) {
+                        console.log('🔧 Tools used:', data.tools_used);
+                        this.addMessage('ai', `🔧 Herramientas utilizadas: ${data.tools_used.join(', ')}`);
+                    }
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                     
                 } catch (error) {
                     console.error('❌ Error sending message:', error);
@@ -1003,9 +1106,12 @@
                 typingDiv.className = 'message ai-message-main typing-indicator';
                 typingDiv.innerHTML = `
                     <div class="message-content-main">
+<<<<<<< HEAD
                         <div class="typing-avatar-container">
                             <img id="typingLogo" src="/templates/assets/images/logo_yellow.png" alt="Thinking..." style="width: 40px; height: 40px; border-radius: 50%; object-fit: contain; transition: all 0.2s ease;">
                         </div>
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                         <div class="typing-dots">
                             <span></span><span></span><span></span>
                         </div>
@@ -1014,6 +1120,7 @@
                 `;
                 messagesContainer.appendChild(typingDiv);
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
+<<<<<<< HEAD
                 
                 // Start the logo animation cycle after a short delay
                 setTimeout(() => {
@@ -1025,12 +1132,18 @@
                 // Stop the animation first
                 this.stopLogoAnimation();
                 
+=======
+            }
+            
+            hideTypingIndicator() {
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                 const indicator = document.getElementById('typingIndicator');
                 if (indicator) {
                     indicator.remove();
                 }
             }
             
+<<<<<<< HEAD
             startLogoAnimation() {
                 const logos = [
                     '/templates/assets/images/logo_yellow.png',
@@ -1060,6 +1173,8 @@
                 }
             }
             
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             handleAddressInput(value) {
                 if (value.length < 3) {
                     this.hideAddressSuggestions();
@@ -1115,6 +1230,7 @@
                 }
             }
             
+<<<<<<< HEAD
             // Simple markdown to HTML converter (with clickable links)
             parseMarkdown(text) {
                 if (!text) return '';
@@ -1137,6 +1253,8 @@
                 return div.innerHTML;
             }
             
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             addMessage(type, content) {
                 const messagesContainer = document.getElementById('mainChatMessages');
                 const messageDiv = document.createElement('div');
@@ -1147,6 +1265,7 @@
                     minute: '2-digit' 
                 });
                 
+<<<<<<< HEAD
                 // Format AI messages with clickable links and proper container
                 let innerHtml;
                 if (type === 'ai') {
@@ -1167,6 +1286,14 @@
                 }
                 
                 messageDiv.innerHTML = innerHtml;
+=======
+                messageDiv.innerHTML = `
+                    <div class="message-content-main">
+                        <p>${content}</p>
+                        <span class="message-time-main">${time}</span>
+                    </div>
+                `;
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                 
                 messagesContainer.appendChild(messageDiv);
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -1192,12 +1319,15 @@
                         const { latitude, longitude } = position.coords;
                         console.log('📍 Location obtained:', latitude, longitude);
                         
+<<<<<<< HEAD
                         // **UPDATE MAIN HERO MAP WITH USER LOCATION**
                         if (window.app && window.app.updateMapWithUserLocation) {
                             console.log('🗺️ Updating main hero map with user location');
                             window.app.updateMapWithUserLocation(latitude, longitude);
                         }
                         
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                         // Update the map preview with new location
                         if (this.mapPreview) {
                             this.mapPreview.setView([latitude, longitude], 14);
@@ -1223,6 +1353,7 @@
                         // Add message to chat
                         this.addMessage('ai', `📍 Ubicación detectada. Buscando farmacias cerca de ti...`);
                         
+<<<<<<< HEAD
                         // Send the coordinates message directly to the AI agent
                         const coordinatesMessage = `Buscar farmacias cerca de mi ubicación: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
                         this.addMessage('user', coordinatesMessage);
@@ -1230,6 +1361,15 @@
                         // Send the message directly to the AI agent without using the input field
                         setTimeout(() => {
                             this.sendCoordinatesMessage(coordinatesMessage);
+=======
+                        // Instead of using pharmacyFinder.searchNearby, send a message to the AI agent
+                        // This ensures the AI agent handles the search and provides a natural response
+                        this.addMessage('user', `Buscar farmacias cerca de mi ubicación: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`);
+                        
+                        // Trigger the AI agent to process this request
+                        setTimeout(() => {
+                            this.sendMessage();
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                         }, 500);
                         
                         // Reset button
@@ -1256,6 +1396,7 @@
                 );
             }
             
+<<<<<<< HEAD
             // **RESTORED: Display pharmacy cards in the results section**
             displayPharmacyCards(pharmacies, userLocation = null) {
                 console.log('🏥 displayPharmacyCards called with:', pharmacies?.length, 'pharmacies');
@@ -1408,6 +1549,8 @@
                 return R * c;
             }
             
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             handleQuickAction(action) {
                 switch(action) {
                     case 'open-now':
@@ -1423,6 +1566,7 @@
                         break;
                 }
             }
+<<<<<<< HEAD
             
             // **DELEGATION METHODS FOR PHARMACY FINDER**
             focusPharmacyOnMap(pharmacyIndex) {
@@ -1451,21 +1595,30 @@
                     console.error('❌ PharmacyFinder.updateMapWithUserLocation not available');
                 }
             }
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         }
         
         // Start the app when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
+<<<<<<< HEAD
             // Ensure page starts at the top
             window.scrollTo(0, 0);
             document.documentElement.scrollTop = 0;
             document.body.scrollTop = 0;
             
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             window.app = new App();
         });
     </script>
     
+<<<<<<< HEAD
     <!-- Service Worker Registration - Disabled for now -->
     <!--
+=======
+    <!-- Service Worker Registration -->
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -1479,6 +1632,7 @@
             });
         }
     </script>
+<<<<<<< HEAD
     -->
 
     <!-- Footer with Status Link -->
@@ -1538,5 +1692,7 @@
         }
     </style>
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 </body>
 </html>

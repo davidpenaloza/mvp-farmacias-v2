@@ -305,6 +305,7 @@ body {
   margin-bottom: var(--space-12);
 }
 
+<<<<<<< HEAD
 /* Header Stats Section */
 .header-stats-section {
   background: var(--bg-secondary);
@@ -362,6 +363,8 @@ body {
   letter-spacing: 0.05em;
 }
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -628,6 +631,7 @@ body {
     transform: translateX(22px);
   }
   
+<<<<<<< HEAD
   /* Header Stats Responsive - Tablet */
   .header-stats-section .stats-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -651,6 +655,8 @@ body {
     font-size: 0.7rem;
   }
   
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
   .hero-content {
     padding: var(--space-12) var(--space-4);
     margin-top: 70px;
@@ -710,6 +716,7 @@ body {
   .stat-card {
     padding: var(--space-4);
   }
+<<<<<<< HEAD
   
   /* Header Stats Responsive - Mobile */
   .header-stats-section .stats-grid {
@@ -733,6 +740,8 @@ body {
   .header-stats-section .stat-label {
     font-size: 0.65rem;
   }
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 }
 
 /* Animations and micro-interactions */
@@ -923,6 +932,7 @@ body {
     color: white;
 }
 
+<<<<<<< HEAD
 /* AI Response Content Wrapper */
 .ai-response-content {
     margin: 0;
@@ -930,6 +940,8 @@ body {
     color: var(--text-primary);
 }
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 .message-time-main {
     font-size: var(--text-xs);
     color: var(--text-muted);
@@ -941,6 +953,7 @@ body {
     color: rgba(255, 255, 255, 0.8);
 }
 
+<<<<<<< HEAD
 /* 🔗 ENHANCED CHAT LINKS AND PHARMACY INFO STYLES */
 
 /* Pharmacy Link Styles */
@@ -1107,6 +1120,8 @@ body {
     border-bottom-color: var(--color-accent);
 }
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 .chat-input-main {
     display: flex;
     gap: var(--space-3);
@@ -1133,6 +1148,7 @@ body {
     box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
 }
 
+<<<<<<< HEAD
 /* --- Quick fix: ensure AI response links are clickable and mitigate overlay blocking --- */
 /* Keep this minimal and scoped to chat components */
 .ai-response-content a {
@@ -1154,6 +1170,8 @@ body {
   z-index: 9999 !important;
 }
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 .chat-send-main {
     padding: var(--space-4) var(--space-6);
     background: var(--gradient-accent);
@@ -1223,7 +1241,11 @@ body {
 .use-location-btn {
     padding: var(--space-4);
     background: var(--gradient-primary);
+<<<<<<< HEAD
     color: #000000;
+=======
+    color: white;
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     border: none;
     border-radius: var(--radius-lg);
     cursor: pointer;
@@ -1232,6 +1254,7 @@ body {
     white-space: nowrap;
     box-shadow: var(--shadow-md);
     min-width: 160px;
+<<<<<<< HEAD
     font-weight: 600;
 }
 
@@ -1244,6 +1267,8 @@ body {
 [data-theme="dark"] .use-location-btn {
     color: #000000;
     background: linear-gradient(135deg, #81C784 0%, #A5D6A7 100%);
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 }
 
 .use-location-btn:hover:not(:disabled) {

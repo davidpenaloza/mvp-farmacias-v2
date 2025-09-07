@@ -9,6 +9,7 @@ from typing import Dict, Any, List, Optional
 from app.agents.tools.base_tool import BaseTool
 from app.database import PharmacyDatabase
 from app.cache.redis_client import get_redis_client
+<<<<<<< HEAD
 from app.utils.location_utils import enhance_pharmacy_info
 
 logger = logging.getLogger(__name__)
@@ -29,6 +30,11 @@ except ImportError as e:
     SMART_MATCHING_AVAILABLE = False
     logger.warning(f"⚠️ Smart commune matching not available: {e}")
 
+=======
+
+logger = logging.getLogger(__name__)
+
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 class SearchFarmaciasTool(BaseTool):
     """
     Tool for searching pharmacies by commune, duty status, and other criteria
@@ -37,6 +43,7 @@ class SearchFarmaciasTool(BaseTool):
     def __init__(self):
         super().__init__(
             name="search_farmacias",
+<<<<<<< HEAD
             description="Busca farmacias por comuna, estado de turno y otros criterios. Utiliza la base de datos actualizada de farmacias en Chile con coincidencia inteligente para nombres de comunas."
         )
         # Use enhanced database if available, fallback to regular database
@@ -52,6 +59,11 @@ class SearchFarmaciasTool(BaseTool):
         else:
             self.db = PharmacyDatabase()
             self.use_smart_matching = False
+=======
+            description="Busca farmacias por comuna, estado de turno y otros criterios. Utiliza la base de datos actualizada de farmacias en Chile."
+        )
+        self.db = PharmacyDatabase()
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     
     async def execute(self, **kwargs) -> Dict[str, Any]:
         """
@@ -59,7 +71,11 @@ class SearchFarmaciasTool(BaseTool):
         
         Args:
             comuna (str): Nombre de la comuna para buscar farmacias
+<<<<<<< HEAD
             turno (bool, optional): Si buscar SOLO farmacias de turno/emergencia (True) o farmacias regulares disponibles (False)
+=======
+            turno (bool, optional): Si buscar solo farmacias de turno (True) o todas (False)
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             limite (int, optional): Número máximo de resultados (default: 10)
             incluir_cerradas (bool, optional): Si incluir farmacias cerradas (default: False)
             
@@ -69,7 +85,11 @@ class SearchFarmaciasTool(BaseTool):
         comuna = kwargs.get("comuna", "").strip()
         turno = kwargs.get("turno", False)
         limite = kwargs.get("limite", 10)
+<<<<<<< HEAD
         incluir_cerradas = kwargs.get("incluir_cerradas", True)  # Default to including all pharmacies
+=======
+        incluir_cerradas = kwargs.get("incluir_cerradas", False)
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         
         # Validate inputs
         if not comuna:
@@ -80,6 +100,7 @@ class SearchFarmaciasTool(BaseTool):
             }
         
         try:
+<<<<<<< HEAD
             # Use smart matching if available
             if self.use_smart_matching and hasattr(self.db, 'smart_find_by_comuna'):
                 # Use enhanced search with smart commune matching
@@ -141,10 +162,28 @@ class SearchFarmaciasTool(BaseTool):
                         farmacia for farmacia in farmacias_filtradas
                         if self.db.is_pharmacy_currently_open(farmacia)
                     ]
+=======
+            # Use existing database methods
+            if turno:
+                # Search for duty pharmacies in specific commune
+                farmacias_filtradas = self.db.find_by_comuna(comuna, only_open=True)
+            else:
+                # Search all pharmacies in commune
+                farmacias_filtradas = self.db.find_by_comuna(comuna, only_open=False)
+            
+            # Apply additional filters
+            if not incluir_cerradas:
+                # Filter out closed pharmacies using database method
+                farmacias_filtradas = [
+                    farmacia for farmacia in farmacias_filtradas
+                    if self.db.is_pharmacy_currently_open(farmacia)
+                ]
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             
             # Apply limit
             farmacias_resultado = farmacias_filtradas[:limite] if limite > 0 else farmacias_filtradas
             
+<<<<<<< HEAD
             # Format results for agent with enhanced location features
             farmacias_formateadas = []
             for farmacia in farmacias_resultado:
@@ -189,11 +228,41 @@ class SearchFarmaciasTool(BaseTool):
                     logger.warning(f"Error checking regular pharmacies: {e}")
                     turno_info = {"no_turno_found": True}
             
+=======
+            # Format results for agent
+            farmacias_formateadas = []
+            for farmacia in farmacias_resultado:
+                farmacia_info = {
+                    "nombre": farmacia.nombre,
+                    "direccion": farmacia.direccion,
+                    "comuna": farmacia.comuna,
+                    "telefono": farmacia.telefono or "Sin teléfono",
+                    "horario": f"{farmacia.hora_apertura} - {farmacia.hora_cierre}" if farmacia.hora_apertura and farmacia.hora_cierre else "Sin información de horarios",
+                    "turno": farmacia.es_turno,
+                    "abierta": self.db.is_pharmacy_currently_open(farmacia),
+                    "cadena": "Independiente"  # Could be enhanced with actual chain data
+                }
+                
+                # Add coordinates if available
+                if farmacia.lat and farmacia.lng and farmacia.lat != 0.0 and farmacia.lng != 0.0:
+                    farmacia_info["ubicacion"] = {
+                        "latitud": farmacia.lat,
+                        "longitud": farmacia.lng
+                    }
+                
+                farmacias_formateadas.append(farmacia_info)
+            
+            # Generate summary
+            total_encontradas = len(farmacias_filtradas)
+            mostradas = len(farmacias_formateadas)
+            
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             resumen = {
                 "comuna_consultada": comuna,
                 "solo_turno": turno,
                 "total_encontradas": total_encontradas,
                 "mostradas": mostradas,
+<<<<<<< HEAD
                 "incluye_cerradas": incluir_cerradas,
                 **turno_info
             }
@@ -206,11 +275,22 @@ class SearchFarmaciasTool(BaseTool):
                          (f" (solo de turno)" if turno else " (todas las farmacias)") + \
                          (f". Mostrando {mostradas} resultados." if total_encontradas > mostradas else ".")
 
+=======
+                "incluye_cerradas": incluir_cerradas
+            }
+            
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             return {
                 "farmacias": farmacias_formateadas,
                 "resumen": resumen,
                 "total": total_encontradas,
+<<<<<<< HEAD
                 "mensaje": mensaje
+=======
+                "mensaje": f"Se encontraron {total_encontradas} farmacias en {comuna}" + 
+                          (f" (solo de turno)" if turno else "") + 
+                          (f". Mostrando {mostradas} resultados." if total_encontradas > mostradas else ".")
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             }
             
         except Exception as e:
@@ -234,7 +314,11 @@ class SearchFarmaciasTool(BaseTool):
                 },
                 "turno": {
                     "type": "boolean",
+<<<<<<< HEAD
                     "description": "Si buscar SOLO farmacias de turno/emergencia (true) o TODAS las farmacias abiertas incluyendo regulares (false). Usar true solo para 'farmacias de turno', false para 'farmacias abiertas'",
+=======
+                    "description": "Si buscar solo farmacias de turno (true) o todas las farmacias (false)",
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                     "default": False
                 },
                 "limite": {
@@ -246,8 +330,13 @@ class SearchFarmaciasTool(BaseTool):
                 },
                 "incluir_cerradas": {
                     "type": "boolean",
+<<<<<<< HEAD
                     "description": "Si incluir farmacias que están cerradas en los resultados. Por defecto incluye todas las farmacias con información de horarios",
                     "default": True
+=======
+                    "description": "Si incluir farmacias que están cerradas en los resultados",
+                    "default": False
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                 }
             },
             "required": ["comuna"]
@@ -304,11 +393,31 @@ class SearchFarmaciasNearbyTool(BaseTool):
             # Apply limit
             farmacias_resultado = farmacias_cercanas[:limite] if limite > 0 else farmacias_cercanas
             
+<<<<<<< HEAD
             # Format results for agent with enhanced location features
             farmacias_formateadas = []
             for farmacia in farmacias_resultado:
                 # Use enhanced formatting with location features
                 farmacia_info = enhance_pharmacy_info(farmacia, self.db)
+=======
+            # Format results for agent
+            farmacias_formateadas = []
+            for farmacia in farmacias_resultado:
+                farmacia_info = {
+                    "nombre": farmacia.nombre,
+                    "direccion": farmacia.direccion,
+                    "comuna": farmacia.comuna,
+                    "telefono": farmacia.telefono or "Sin teléfono",
+                    "horario": f"{farmacia.hora_apertura} - {farmacia.hora_cierre}",
+                    "turno": farmacia.es_turno,
+                    "abierta": self.db.is_pharmacy_currently_open(farmacia),
+                    "cadena": "Independiente",  # Default value
+                    "ubicacion": {
+                        "latitud": farmacia.lat,
+                        "longitud": farmacia.lng
+                    }
+                }
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                 farmacias_formateadas.append(farmacia_info)
             
             # Determine message based on results

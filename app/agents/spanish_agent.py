@@ -30,7 +30,11 @@ class SpanishPharmacyAgent:
     """
     
     def __init__(self, use_langfuse: bool = None):
+<<<<<<< HEAD
         self.model = get_env_value("AGENT_MODEL", "gpt-4o-mini")
+=======
+        self.model = get_env_value("AGENT_MODEL", "gpt-3.5-turbo")
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         self.temperature = float(get_env_value("AGENT_TEMPERATURE", "0.1"))
         self.max_tokens = int(get_env_value("AGENT_MAX_TOKENS", "500"))
         self.safety_mode = get_env_value("AGENT_SAFETY_MODE", "strict")
@@ -65,12 +69,18 @@ class SpanishPharmacyAgent:
             try:
                 # Use Langfuse-wrapped OpenAI client for observability
                 self.openai_client = OpenAI(
+<<<<<<< HEAD
                     api_key=api_key
                     # Langfuse wrapper will handle the observability automatically
+=======
+                    api_key=api_key,
+                    base_url=get_env_value("LANGFUSE_HOST", "https://cloud.langfuse.com")
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                 )
                 logger.info("✅ OpenAI client initialized with Langfuse observability")
             except Exception as e:
                 logger.warning(f"⚠️ Langfuse initialization failed, falling back to standard OpenAI: {e}")
+<<<<<<< HEAD
                 # Import standard OpenAI for fallback
                 from openai import OpenAI as StandardOpenAI
                 self.openai_client = StandardOpenAI(api_key=api_key)
@@ -80,12 +90,20 @@ class SpanishPharmacyAgent:
             # Import standard OpenAI when Langfuse disabled
             from openai import OpenAI as StandardOpenAI
             self.openai_client = StandardOpenAI(api_key=api_key)
+=======
+                self.openai_client = OpenAI(api_key=api_key)
+                logger.info("✅ OpenAI client initialized (standard mode - fallback)")
+        else:
+            # Standard OpenAI client
+            self.openai_client = OpenAI(api_key=api_key)
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             logger.info("✅ OpenAI client initialized (standard mode)")
     
     def _create_system_prompt(self) -> str:
         """Create comprehensive system prompt for the Spanish pharmacy agent"""
         return """Eres un asistente farmacéutico especializado llamado FarmaBot, diseñado para ayudar a personas en Chile a encontrar farmacias y obtener información segura sobre medicamentos.
 
+<<<<<<< HEAD
     **TU PERSONALIDAD:**
     - Profesional, amigable y empático
     - Especialista en el sistema farmacéutico chileno
@@ -199,6 +217,62 @@ class SpanishPharmacyAgent:
     [Incluir disclaimer de seguridad al final]
 
     Recuerda: Tu objetivo es ser útil y seguro, siempre priorizando la salud y bienestar de los usuarios."""
+=======
+**TU PERSONALIDAD:**
+- Profesional, amigable y empático
+- Especialista en el sistema farmacéutico chileno
+- Siempre priorizas la seguridad del paciente
+- Respondes SOLO en español
+
+**TUS CAPACIDADES:**
+1. 🏥 Buscar farmacias por comuna y estado de turno
+2. � Buscar farmacias cercanas por coordenadas geográficas
+3. �💊 Proporcionar información básica sobre medicamentos
+4. �️ Listar comunas disponibles en el sistema
+5. 🔍 Buscar categorías de medicamentos
+
+**HERRAMIENTAS DISPONIBLES:**
+- search_farmacias: Busca farmacias por comuna, con opción de filtrar solo las de turno
+- search_farmacias_nearby: Busca farmacias cercanas usando coordenadas (latitud, longitud)
+- lookup_medicamento: Busca información sobre medicamentos (soporta nombres en español e inglés)
+- get_communes: Obtiene lista de comunas disponibles
+- get_medication_categories: Lista categorías terapéuticas de medicamentos
+
+**REGLAS DE SEGURIDAD MÉDICA (OBLIGATORIAS):**
+1. NUNCA diagnostiques condiciones médicas
+2. NUNCA recomiendes dosificaciones específicas
+3. SIEMPRE incluye disclaimers sobre consultar profesionales de la salud
+4. NO almacenes información médica personal
+5. Para cualquier consulta médica seria, deriva inmediatamente a un profesional
+
+**FORMATO DE RESPUESTAS:**
+- Usa emojis apropiados para hacer las respuestas más amigables
+- Estructura la información claramente
+- Incluye toda la información relevante (direcciones, teléfonos, horarios)
+- Termina las respuestas sobre medicamentos con disclaimers de seguridad
+
+**DISCLAIMERS OBLIGATORIOS:**
+Para información de medicamentos: "⚠️ Esta información es solo para consulta y no constituye consejo médico. Siempre consulte con un farmacéutico o médico antes de usar cualquier medicamento."
+
+Para consultas médicas: "🏥 Para cualquier problema de salud, consulte directamente con un profesional médico."
+
+**EJEMPLOS DE INTERACCIÓN:**
+
+Usuario: "Necesito una farmacia de turno en Villa Alemana"
+Tú: "🏥 Te ayudo a encontrar farmacias de turno en Villa Alemana. Déjame buscar las opciones disponibles..."
+[Usar search_farmacias con comuna="Villa Alemana" y turno=true]
+
+Usuario: "Buscar farmacias cerca de mi ubicación: -33.4489, -70.6693"
+Tú: "📍 Te ayudo a encontrar farmacias cerca de tu ubicación. Buscando en el área..."
+[Usar search_farmacias_nearby con latitud=-33.4489 y longitud=-70.6693]
+
+Usuario: "¿Qué es el paracetamol?"
+Tú: "💊 El paracetamol es un medicamento analgésico y antipirético..."
+[Usar lookup_medicamento con medicamento="paracetamol"]
+[Incluir disclaimer de seguridad al final]
+
+Recuerda: Tu objetivo es ser útil y seguro, siempre priorizando la salud y bienestar de los usuarios."""
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     
     def _load_safety_disclaimers(self) -> Dict[str, str]:
         """Load safety disclaimers for different types of responses"""
@@ -250,6 +324,7 @@ class SpanishPharmacyAgent:
         start_time = datetime.now()
         
         try:
+<<<<<<< HEAD
             # SAFETY CHECK: Detect medication recommendation requests early
             safety_check = self._check_medication_recommendation_request(user_message)
             if safety_check:
@@ -278,6 +353,8 @@ class SpanishPharmacyAgent:
                     "success": True  # ✅ Esto es crucial para que el frontend muestre el mensaje
                 }
             
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
             # Get conversation memory
             memory = ConversationMemory(session_id)
             
@@ -433,6 +510,7 @@ class SpanishPharmacyAgent:
         
         execution_time = (datetime.now() - start_time).total_seconds() * 1000
         
+<<<<<<< HEAD
         # Parse tool results to include raw data for frontend
         parsed_tool_results = []
         for tool_used in tools_used:
@@ -457,12 +535,15 @@ class SpanishPharmacyAgent:
                         })
                     break
         
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         return {
             "success": True,
             "response": agent_response,
             "session_id": memory.session_id,
             "response_time_ms": execution_time,
             "tools_used": [tool["tool"] for tool in tools_used],  # Extract just tool names
+<<<<<<< HEAD
             "tool_results": parsed_tool_results,  # Include full tool results for frontend
             "model": self.model
         }
@@ -542,6 +623,11 @@ class SpanishPharmacyAgent:
         
         return None
 
+=======
+            "model": self.model
+        }
+    
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     def _add_safety_disclaimers(self, response: str) -> str:
         """Add appropriate safety disclaimers to response"""
         # Check if response contains medication information

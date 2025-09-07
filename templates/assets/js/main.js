@@ -815,6 +815,7 @@ export class PharmacyFinder {
     getMap() {
         return this.map;
     }
+<<<<<<< HEAD
     
     // **UPDATE MAP WITH USER LOCATION AND SEARCH NEARBY PHARMACIES**
     async updateMapWithUserLocation(latitude, longitude) {
@@ -1070,6 +1071,8 @@ export class PharmacyFinder {
             }
         }
     }
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 }
 
 // Make PharmacyFinder available globally for backward compatibility

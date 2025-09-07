@@ -11,12 +11,18 @@ import os
 from app.services.minsal_client import get_locales, get_locales_turno
 from app.services.vademecum_service import load_vademecum, search_vademecum
 from app.database import PharmacyDatabase
+<<<<<<< HEAD
 from app.core.enhanced_pharmacy_search import EnhancedPharmacyDatabase
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 from app.cache.redis_client import get_redis_client
 from app.cache.invalidation import get_invalidation_manager, manual_cache_invalidation
 from app.middleware.cache_middleware import CacheMiddleware, cache_warmup, cache_health_check
 from app.agents.spanish_agent import SpanishPharmacyAgent
+<<<<<<< HEAD
 from app.status import router as status_router
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 import json
 import sqlite3
 from pathlib import Path
@@ -33,8 +39,13 @@ APP_NAME = os.getenv("APP_NAME", "Farmacias de Turno + Vademécum (MVP v2)")
 ENV = os.getenv("ENV", "dev")
 VADEMECUM_PATH = os.getenv("VADEMECUM_PATH", "./data/vademecum_clean.parquet")
 
+<<<<<<< HEAD
 # Initialize Enhanced database with LLM-enhanced commune matching
 db = EnhancedPharmacyDatabase()
+=======
+# Initialize database
+db = PharmacyDatabase()
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 
 # Initialize Spanish AI Agent (will be done on startup)
 spanish_agent = None
@@ -52,9 +63,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+<<<<<<< HEAD
 # Include status router
 app.include_router(status_router, prefix="/api")
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 # Mount static files for our modern frontend
 app.mount("/templates/assets", StaticFiles(directory="templates/assets"), name="assets")
 
@@ -77,6 +91,7 @@ REJECTION_TRIGGERS = [
 
 @app.on_event("startup")
 async def startup_event():
+<<<<<<< HEAD
     """Initialize Redis connection, Spanish AI Agent, database updates, and warm up cache"""
     global spanish_agent
     logger.info("🚀 Starting Pharmacy Finder application...")
@@ -92,6 +107,12 @@ async def startup_event():
     except Exception as e:
         logger.warning(f"⚠️  Database auto-update failed: {e} - continuing with existing data")
     
+=======
+    """Initialize Redis connection, Spanish AI Agent, and warm up cache"""
+    global spanish_agent
+    logger.info("🚀 Starting Pharmacy Finder application...")
+    
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     # Initialize Redis connection
     redis_client = await get_redis_client()
     connected = await redis_client.connect()
@@ -128,6 +149,7 @@ async def shutdown_event():
     
     logger.info("✅ Application shutdown completed")
 
+<<<<<<< HEAD
 @app.get("/admin/update-database")
 async def force_database_update():
     """Force database update - admin endpoint"""
@@ -171,6 +193,8 @@ async def get_database_status():
             "error": str(e)
         }
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 @app.get("/health")
 def health():
     return {"status": "ok", "env": ENV}
@@ -227,7 +251,10 @@ async def chat_with_agent(payload: ChatSessionPayload):
                 "session_id": session_id,
                 "reply": response.get("response", ""),
                 "tools_used": response.get("tools_used", []),
+<<<<<<< HEAD
                 "tool_results": response.get("tool_results", []),  # Include tool results for frontend
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                 "response_time_ms": response.get("response_time_ms", 0),
                 "model": response.get("model", "gpt-3.5-turbo")
             }
@@ -263,6 +290,7 @@ async def create_chat_session():
 
 @app.post("/api/chat/message")
 async def send_chat_message(
+<<<<<<< HEAD
     payload: ChatSessionPayload,
     session_id: Optional[str] = Query(None, description="Session ID for the conversation (also accepted in JSON body)")
 ):
@@ -281,6 +309,20 @@ async def send_chat_message(
 
     try:
         response = await spanish_agent.process_message(effective_session_id, payload.message)
+=======
+    payload: ChatPayload,
+    session_id: str = Query(..., description="Session ID for the conversation")
+):
+    """Send a message to an existing chat session"""
+    if not spanish_agent:
+        raise HTTPException(status_code=503, detail="AI Agent not available")
+    
+    if not session_id:
+        raise HTTPException(status_code=400, detail="session_id is required")
+    
+    try:
+        response = await spanish_agent.process_message(session_id, payload.message)
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         return response
     except Exception as e:
         logger.error(f"❌ Message processing error: {e}")
@@ -359,12 +401,18 @@ def chat_legacy(payload: ChatPayload):
 # New endpoints for the web interface
 @app.get("/")
 def read_root():
+<<<<<<< HEAD
     """Serve the main web interface (modern version with AI chat)"""
     template_path = Path(__file__).parent.parent / "templates" / "index_modern.html"
+=======
+    """Serve the main web interface"""
+    template_path = Path(__file__).parent.parent / "templates" / "index.html"
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     if template_path.exists():
         return FileResponse(template_path)
     return {"message": "Web interface not available. Use /docs for API documentation."}
 
+<<<<<<< HEAD
 @app.get("/legacy")
 def read_legacy():
     """Serve the legacy web interface (original version)"""
@@ -376,6 +424,11 @@ def read_legacy():
 @app.get("/modern")
 def read_modern():
     """Redirect to main homepage (kept for compatibility)"""
+=======
+@app.get("/modern")
+def read_modern():
+    """Serve the modern web interface with AI chat"""
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     template_path = Path(__file__).parent.parent / "templates" / "index_modern.html"
     if template_path.exists():
         return FileResponse(template_path)
@@ -387,6 +440,7 @@ def serve_modern_template():
     template_path = Path(__file__).parent.parent / "templates" / "index_modern.html"
     if template_path.exists():
         return FileResponse(template_path)
+<<<<<<< HEAD
 
 @app.get("/status")
 def read_status():
@@ -395,6 +449,8 @@ def read_status():
     if template_path.exists():
         return FileResponse(template_path)
     return {"message": "Status dashboard not available."}
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     return {"message": "Modern template not found"}
 
 @app.get("/api/stats")
@@ -418,6 +474,7 @@ def get_stats():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error getting stats: {e}")
 
+<<<<<<< HEAD
 @app.get("/api/status")
 async def get_system_status():
     """Get comprehensive system status for the status dashboard"""
@@ -541,6 +598,8 @@ async def get_system_status():
         logger.error(f"❌ System status check error: {e}")
         raise HTTPException(status_code=500, detail=f"System status error: {e}")
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 @app.get("/api/open-now")
 def get_open_now_pharmacies(
     lat: Optional[float] = Query(None, description="Latitude for location-based search"),
@@ -599,7 +658,11 @@ def get_nearby_pharmacies(
     abierto: bool = Query(False, description="Only open pharmacies"),
     abierto_ahora: bool = Query(False, description="Only pharmacies open right now")
 ):
+<<<<<<< HEAD
     """Find pharmacies near a location you can change the radius if needed"""
+=======
+    """Find pharmacies near a location"""
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
     try:
         if abierto_ahora:
             # Use new method that checks current time
@@ -784,6 +847,7 @@ async def warm_cache():
     except Exception as e:
         logger.error(f"❌ Cache warmup error: {e}")
         raise HTTPException(status_code=500, detail=f"Cache warmup error: {e}")
+<<<<<<< HEAD
 
 @app.get("/api/data/freshness")
 async def check_data_freshness():
@@ -1234,3 +1298,5 @@ async def vademecum_explorer():
     """
     
     return HTMLResponse(content=html_content)
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9

@@ -285,7 +285,11 @@ export class ChatManager {
             messageDiv.innerHTML = `
                 <div class="message-avatar">🤖</div>
                 <div class="message-content">
+<<<<<<< HEAD
                     <div class="ai-response-content">${this.formatAIResponse(content)}</div>
+=======
+                    <p>${this.formatAIResponse(content)}</p>
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
                     <span class="message-time">${timestamp}</span>
                 </div>
             `;
@@ -310,6 +314,7 @@ export class ChatManager {
         // Convert line breaks to <br>
         formatted = formatted.replace(/\n/g, '<br>');
         
+<<<<<<< HEAD
         // ⚡ CONVERT MARKDOWN LINKS TO CLICKABLE HTML LINKS
         // Pattern: [texto](url) -> <a href="url" target="_blank">texto</a>
         formatted = formatted.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="pharmacy-link">$1</a>');
@@ -337,6 +342,13 @@ export class ChatManager {
         
         // ⚡ EMERGENCY INDICATORS
         formatted = formatted.replace(/�([^<\n]*)/g, '<span class="emergency-indicator">�$1</span>');
+=======
+        // Make pharmacy names bold (simple regex)
+        formatted = formatted.replace(/farmacia\s+([^,\.!?]+)/gi, '<strong>Farmacia $1</strong>');
+        
+        // Make addresses clickable if they contain street names
+        formatted = formatted.replace(/📍\s*([^<\n]+)/g, '<span class="address">📍 $1</span>');
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         
         return formatted;
     }

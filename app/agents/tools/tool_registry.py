@@ -12,6 +12,7 @@ from app.agents.tools.medicamento_tools import LookupMedicamentoTool, GetMedicat
 
 logger = logging.getLogger(__name__)
 
+<<<<<<< HEAD
 # Import Google Maps tools
 try:
     from app.tools.google_maps_tools import (
@@ -25,6 +26,8 @@ except ImportError:
     GOOGLE_MAPS_AVAILABLE = False
     logger.warning("⚠️ Google Maps tools not available - install google maps dependencies")
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 class ToolRegistry:
     """
     Registry for managing AI agent tools
@@ -44,6 +47,7 @@ class ToolRegistry:
             GetMedicationCategoriestool()
         ]
         
+<<<<<<< HEAD
         # Add Google Maps tools if available
         if GOOGLE_MAPS_AVAILABLE:
             google_maps_tools = [
@@ -55,6 +59,8 @@ class ToolRegistry:
             default_tools.extend(google_maps_tools)
             logger.info("🗺️ Google Maps tools added to registry")
         
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
         for tool in default_tools:
             self.register_tool(tool)
             logger.info(f"✅ Registered tool: {tool.name}")

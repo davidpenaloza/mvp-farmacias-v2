@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🏥 Agente Farmacia Chile v2.0 - Spanish AI Assistant
 
 A comprehensive web application for finding pharmacies in Chile with real-time data from MINSAL (Ministry of Health), advanced quality monitoring, and an intelligent Spanish-speaking AI assistant with LLM + embeddings enhanced search capabilities.
@@ -27,6 +28,13 @@ bash setup_local.sh
 📚 **Detailed Guide**: See [GUIA_INSTALACION_LOCAL.md](GUIA_INSTALACION_LOCAL.md)
 
 ## 🌟 NEW: Enhanced Spanish AI Agent with LLM + Embeddings
+=======
+# 🏥 Pharmacy Finder - Chile MVP v2 with Spanish AI Agent
+
+A comprehensive web application for finding pharmacies in Chile with real-time data from MINSAL (Ministry of Health), advanced quality monitoring, and an intelligent Spanish-speaking AI assistant.
+
+## 🌟 NEW: Spanish AI Agent
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 
 **🤖 Intelligent Pharmacy Assistant**
 - **Natural Spanish Conversations** - Chat in Spanish about pharmacy needs
@@ -34,7 +42,10 @@ bash setup_local.sh
 - **Medication Information** - Bilingual drug database with 220+ medications
 - **Session Memory** - Remembers context across conversation turns
 - **Safety Features** - Medical disclaimers and professional consultation reminders
+<<<<<<< HEAD
 - **🎨 Custom Logo Animation** - Dynamic typing indicator with branded logo cycling (NEW!)
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 
 **✨ AI Agent Capabilities:**
 - 🏥 Find pharmacies by commune with availability filtering
@@ -43,6 +54,7 @@ bash setup_local.sh
 - 🔍 Drug category and classification queries
 - 💬 Multi-turn conversations with memory
 - ⚡ Response times: 2-4 seconds average
+<<<<<<< HEAD
 - 🎯 **Enhanced UX**: Animated logo (Yellow → Green → Red) during AI thinking
 
 **🎨 NEW: Custom Branding & UI Enhancements (Aug 31, 2025)**
@@ -51,6 +63,8 @@ bash setup_local.sh
 - **Professional Animations** - Smooth color transitions with optimal timing
 - **Branded Chat Experience** - Logo avatar replaces generic bot emoji
 - **Visual Feedback** - Clear indication of AI activity with engaging animations
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 
 ## 📋 Core Features
 
@@ -108,6 +122,7 @@ mvp-farmacias-v2/
 │   ├── quick_check.py           # Daily data quality check
 │   ├── test_villa_alemana.py    # Villa Alemana specific tests
 │   └── test_web.py              # Web interface tests
+<<<<<<< HEAD
 ├── templates/                    # Frontend with enhanced UI & branding
 │   ├── index_modern.html        # Main web interface with AI chat
 │   └── assets/                  # Static assets and branding
@@ -118,6 +133,10 @@ mvp-farmacias-v2/
 │           ├── logo_yellow.png  # Animated typing indicator (14KB)
 │           ├── logo_green.png   # Animated typing indicator (14KB)
 │           └── logo_red.png     # Animated typing indicator (14KB)
+=======
+├── templates/                    # Frontend templates
+│   └── index.html               # Main web interface with enhanced features
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 ├── docs/                         # Documentation
 │   ├── guardrails.md           # API guidelines and best practices
 │   └── openapi.yaml            # OpenAPI specification
@@ -133,6 +152,7 @@ mvp-farmacias-v2/
 └── README_COMPLETE.md           # Detailed setup guide
 ```
 
+<<<<<<< HEAD
 ## 🆕 Recent Updates
 
 ### August 31, 2025 - Custom Branding & UI Enhancements
@@ -150,6 +170,8 @@ mvp-farmacias-v2/
 - **🔒 Safety Systems**: Medical disclaimers and professional consultation reminders
 - **📊 Performance**: 2-4 second response times with 100% tool success rate
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 ## 🚀 Quick Start
 
 > 📘 **For detailed setup instructions, environment configuration, and Docker deployment, see [`README_COMPLETE.md`](README_COMPLETE.md)**
@@ -339,8 +361,11 @@ curl -X POST "http://localhost:8001/api/chat/message?session_id=sess_20250830_12
 - `GET /` - Main web interface
 - `GET /health` - Application health status
 - `GET /api/stats` - Live pharmacy statistics
+<<<<<<< HEAD
 - `GET /status` - System status dashboard (HTML)
 - `GET /api/status` - Comprehensive system status (JSON)
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 
 ### Search Endpoints
 - `GET /api/search?comuna={name}&abierto={bool}` - Search by commune
@@ -355,10 +380,13 @@ curl -X POST "http://localhost:8001/api/chat/message?session_id=sess_20250830_12
 - `GET /api/cache/invalidation-check` - Run cache freshness validation
 - `POST /api/cache/warmup` - Preload popular data into cache
 
+<<<<<<< HEAD
 ### Data Management Endpoints (NEW)
 - `GET /api/data/freshness` - Check database data freshness and update status
 - `POST /api/data/update` - Trigger manual data update from MINSAL API
 
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 ### Legacy Endpoints (compatibility)
 - `GET /farmacias` - MINSAL API passthrough (external dependency)
 - `GET /medicamentos` - Vademecum medicine search
@@ -487,9 +515,12 @@ python test_redis.py
 
 # Cache performance test (NEW)
 python test_cache_server.py
+<<<<<<< HEAD
 
 # Vademecum medication system test (NEW)
 python test_vademecum_medicamentos.py
+=======
+>>>>>>> da633d1c57d5615d9572b573a3630a8e062438a9
 ```
 
 ### Data Updates
